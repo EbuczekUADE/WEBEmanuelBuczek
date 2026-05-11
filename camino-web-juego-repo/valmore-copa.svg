@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500">
+  <rect width="700" height="500" rx="34" fill="#f8f3ea"/>
+  <rect x="60" y="320" width="580" height="120" rx="28" fill="#e1ecf7"/>
+  <circle cx="530" cy="100" r="34" fill="#ffd78a"/>
+  <path d="M285 115h128c0 86-20 140-64 170-44-30-64-84-64-170z" fill="#a01d3f"/>
+  <rect x="341" y="280" width="16" height="72" rx="8" fill="#b69168"/>
+  <rect x="286" y="348" width="126" height="18" rx="9" fill="#ead7b9"/>
+  <text x="350" y="430" text-anchor="middle" font-size="34" font-family="Arial" fill="#7a1730">Momento para disfrutar</text>
+</svg>

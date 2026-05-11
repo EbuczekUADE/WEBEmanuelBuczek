@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
+  <rect width="800" height="520" rx="34" fill="#ebfff2"/>
+  <rect x="118" y="92" width="564" height="336" rx="26" fill="#ffffff"/>
+  <rect x="214" y="132" width="372" height="256" rx="28" fill="#dff6e8"/>
+  <rect x="274" y="189" width="252" height="142" rx="24" fill="#ffffff"/>
+  <text x="294" y="170" font-size="32" font-family="Arial" fill="#17975a">margin</text>
+  <text x="339" y="269" font-size="36" font-family="Arial" fill="#4767d8">padding</text>
+  <path d="M247 207h26M247 313h26M527 207h26M527 313h26" stroke="#17975a" stroke-width="10" stroke-linecap="round"/>
+</svg>

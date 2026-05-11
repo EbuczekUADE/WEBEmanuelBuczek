@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
+  <rect width="800" height="520" rx="34" fill="#eef4ff"/>
+  <rect x="205" y="142" width="390" height="226" rx="30" fill="#cfdcff" opacity="0.6"/>
+  <rect x="185" y="122" width="390" height="226" rx="30" fill="#ffffff"/>
+  <rect x="250" y="187" width="260" height="96" rx="22" fill="#ffd54a"/>
+  <text x="273" y="247" font-size="42" font-family="Arial" fill="#3b4f9e">box-shadow</text>
+  <circle cx="622" cy="145" r="28" fill="#8fd6ff"/>
+  <circle cx="167" cy="372" r="22" fill="#16a45d"/>
+</svg>

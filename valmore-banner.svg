@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420">
+  <rect width="1200" height="420" rx="42" fill="#f7ecdf"/>
+  <rect x="0" y="250" width="1200" height="170" fill="#d9e9f8"/>
+  <circle cx="220" cy="118" r="48" fill="#ffd78a"/>
+  <path d="M138 288c78-54 172-62 270-30 60 20 118 52 186 56 101 6 157-43 242-53 113-13 202 42 264 89H138z" fill="#fff6ee"/>
+  <rect x="714" y="106" width="134" height="170" rx="24" fill="#7a1730"/>
+  <rect x="728" y="92" width="106" height="36" rx="18" fill="#ead7b9"/>
+  <rect x="750" y="138" width="62" height="82" rx="12" fill="#f6efe3"/>
+  <text x="782" y="184" text-anchor="middle" font-size="28" font-family="Arial" fill="#7a1730">V</text>
+  <path d="M356 120h74c0 52-12 84-37 102-25-18-37-50-37-102z" fill="#b8324f"/>
+  <rect x="387" y="217" width="12" height="46" rx="6" fill="#a67c52"/>
+  <rect x="360" y="259" width="68" height="16" rx="8" fill="#ead7b9"/>
+  <text x="600" y="105" text-anchor="middle" font-size="36" font-family="Arial" fill="#7a1730">VALMORE</text>
+</svg>

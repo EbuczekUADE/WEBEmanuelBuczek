@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420">
+  <rect width="1200" height="420" rx="42" fill="#edf5ff"/>
+  <rect x="70" y="80" width="1060" height="260" rx="34" fill="#ffffff"/>
+  <rect x="132" y="132" width="268" height="148" rx="24" fill="#dcecff"/>
+  <rect x="448" y="132" width="268" height="148" rx="24" fill="#e8f7ef"/>
+  <rect x="764" y="132" width="268" height="148" rx="24" fill="#fff4df"/>
+  <circle cx="214" cy="186" r="28" fill="#4e6f92"/>
+  <circle cx="530" cy="186" r="28" fill="#16a45d"/>
+  <circle cx="846" cy="186" r="28" fill="#f0a33a"/>
+  <rect x="182" y="234" width="160" height="14" rx="7" fill="#7ea9d6"/>
+  <rect x="498" y="234" width="160" height="14" rx="7" fill="#74c096"/>
+  <rect x="814" y="234" width="160" height="14" rx="7" fill="#e7be72"/>
+  <path d="M402 206h34M718 206h34" stroke="#9bb8d5" stroke-width="12" stroke-linecap="round"/>
+  <text x="600" y="368" text-anchor="middle" font-size="38" font-family="Arial" fill="#4e6f92">Gestion, equipo y tecnologia</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
+  <rect width="800" height="520" rx="34" fill="#fff1df"/>
+  <rect x="122" y="88" width="556" height="344" rx="26" fill="#ffffff"/>
+  <rect x="170" y="149" width="196" height="66" rx="22" fill="#4a67d6"/>
+  <text x="248" y="191" font-size="40" font-family="Arial" fill="#ffffff">Link</text>
+  <rect x="428" y="149" width="196" height="66" rx="22" fill="#ffb347"/>
+  <text x="484" y="191" font-size="40" font-family="Arial" fill="#ffffff">Bot&oacute;n</text>
+  <path d="M232 276c26-19 61-19 87 0" fill="none" stroke="#ef8a1a" stroke-width="16" stroke-linecap="round"/>
+  <path d="M490 276c26-19 61-19 87 0" fill="none" stroke="#ef8a1a" stroke-width="16" stroke-linecap="round"/>
+  <text x="286" y="349" font-size="56" font-family="Arial" fill="#167ec0">&lt;a&gt;</text>
+</svg>

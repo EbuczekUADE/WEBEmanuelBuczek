@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420">
+  <rect width="1200" height="420" rx="42" fill="#f2f7ff"/>
+  <rect x="0" y="318" width="1200" height="102" fill="#dce9f7"/>
+  <rect x="228" y="118" width="744" height="190" rx="24" fill="#ffffff"/>
+  <rect x="288" y="156" width="130" height="118" rx="8" fill="#d7e7f8"/>
+  <rect x="448" y="156" width="130" height="118" rx="8" fill="#d7e7f8"/>
+  <rect x="608" y="156" width="130" height="118" rx="8" fill="#d7e7f8"/>
+  <rect x="768" y="156" width="130" height="118" rx="8" fill="#d7e7f8"/>
+  <rect x="548" y="214" width="104" height="94" rx="10" fill="#4e6f92"/>
+  <rect x="520" y="92" width="160" height="42" rx="18" fill="#ffd78a"/>
+  <text x="600" y="121" text-anchor="middle" font-size="26" font-family="Arial" fill="#7a5a23">UADE</text>
+  <text x="600" y="368" text-anchor="middle" font-size="38" font-family="Arial" fill="#4e6f92">Formacion, desarrollo y recorrido academico</text>
+</svg>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playlist | Emanuel Buczek</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="logo-web.png" type="image/png">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="fondo-inicio">
+  <div class="contenedor">
+    <section class="barra">
+      <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="sobre-mi.html">Sobre m&iacute;</a>
+        <a href="trivia.html">Trivia</a>
+        <a href="vino.html">Vino</a>
+        <a href="playlist.html">Playlist</a>
+      </nav>
+    </section>
+
+    <section class="tarjeta">
+      <h1>Playlist</h1>
+      <div class="player-card">
+        <img id="cover" class="cover-musica" src="MUSICA1.jpg" alt="Portada de la canci&oacute;n" width="290" height="290">
+        <p id="track-title" class="titulo-track">Stayin' Alive (Gospel &amp; Choir)</p>
+        <p id="track-detail" class="detalle-track">Playlist personal</p>
+
+        <audio id="audio" autoplay></audio>
+
+        <input id="seek" class="barra-tiempo" type="range" min="0" max="100" value="0">
+        <p id="status" class="texto-player">Reproduciendo...</p>
+
+        <div class="controles-player">
+          <button id="prev" type="button">&#9664;&#9664;</button>
+          <button id="playPause" class="boton-circular" type="button">Stop</button>
+          <button id="next" type="button">&#9654;&#9654;</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const tracks = [
+      {
+        title: "Stayin' Alive (Gospel & Choir)",
+        file: "Stayin' Alive (Gospel & Choir).mp3",
+        cover: "MUSICA1.jpg",
+        detail: "Tema 1"
+      },
+      {
+        title: "Willcox - Stayin' Alive",
+        file: "Willcox - Stayin' Alive  Official Music Video.mp3",
+        cover: "MUSICA2.jpg",
+        detail: "Tema 2"
+      }
+    ];
+
+    const audio = document.getElementById("audio");
+    const cover = document.getElementById("cover");
+    const title = document.getElementById("track-title");
+    const detail = document.getElementById("track-detail");
+    const status = document.getElementById("status");
+    const seek = document.getElementById("seek");
+    const playPause = document.getElementById("playPause");
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+
+    let currentTrack = 0;
+
+    function loadTrack(index, autoPlayTrack) {
+      currentTrack = index;
+      audio.src = tracks[currentTrack].file;
+      cover.src = tracks[currentTrack].cover;
+      title.textContent = tracks[currentTrack].title;
+      detail.textContent = tracks[currentTrack].detail;
+      seek.value = 0;
+
+      if (autoPlayTrack) {
+        audio.play().then(() => {
+          status.textContent = "Reproduciendo...";
+          playPause.textContent = "Stop";
+        }).catch(() => {
+          status.textContent = "Toc&aacute; play para empezar la playlist.";
+          playPause.textContent = "Play";
+        });
+      }
+    }
+
+    function togglePlayPause() {
+      if (audio.paused) {
+        audio.play();
+        playPause.textContent = "Stop";
+        status.textContent = "Reproduciendo...";
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        playPause.textContent = "Play";
+        status.textContent = "Detenido";
+        seek.value = 0;
+      }
+    }
+
+    function nextTrack() {
+      const nextIndex = (currentTrack + 1) % tracks.length;
+      loadTrack(nextIndex, true);
+    }
+
+    function prevTrack() {
+      const prevIndex = (currentTrack - 1 + tracks.length) % tracks.length;
+      loadTrack(prevIndex, true);
+    }
+
+    audio.addEventListener("timeupdate", () => {
+      if (!isNaN(audio.duration) && audio.duration > 0) {
+        seek.value = (audio.currentTime / audio.duration) * 100;
+      }
+    });
+
+    seek.addEventListener("input", () => {
+      if (!isNaN(audio.duration) && audio.duration > 0) {
+        audio.currentTime = (seek.value / 100) * audio.duration;
+      }
+    });
+
+    audio.addEventListener("ended", nextTrack);
+
+    playPause.addEventListener("click", togglePlayPause);
+    next.addEventListener("click", nextTrack);
+    prev.addEventListener("click", prevTrack);
+
+    loadTrack(0, true);
+  </script>
+</body>
+</html>
