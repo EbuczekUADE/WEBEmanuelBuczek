@@ -7,14 +7,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3.0">
+  <link rel="stylesheet" href="styles.css?v=6.0">
 </head>
 <body>
   <header class="site-header">
     <nav class="nav container" aria-label="Navegacion principal">
-      <a class="logo" href="#inicio" aria-label="Impulso PyME inicio">Impulso PyME</a>
+      <div class="brand-group">
+        <a class="back-link" href="../index.html" aria-label="Volver a accesos principales">&lt;</a>
+        <a class="logo" href="#inicio" aria-label="Impulso PyME inicio">Impulso PyME</a>
+      </div>
 
-      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
         <span></span>
         <span></span>
         <span></span>
@@ -23,25 +26,13 @@
       <div class="nav-links" id="navLinks">
         <a href="#inicio" class="nav-link-main">Inicio</a>
         <a href="#como-ayudamos" class="nav-link-main">Como funciona</a>
-        <a href="#proyectos" class="nav-link-main">Proyectos</a>
-        
-        <div class="nav-dropdown">
-          <button class="nav-dropdown-toggle" type="button" aria-label="Mas opciones" aria-expanded="false" aria-haspopup="true">
-            Mas <span class="dropdown-icon">v</span>
-          </button>
-          <div class="nav-dropdown-menu">
-            <a href="#impacto">Impacto</a>
-            <a href="#testimonios">Testimonios</a>
-            <a href="#emprendedores">Emprendedores</a>
-            <a href="#recursos">Recursos</a>
-            <a href="#sobre-nosotros">Sobre nosotros</a>
-            <a href="#contacto">Contacto</a>
-            <a href="#donaciones">Donaciones</a>
-          </div>
-        </div>
+        <a href="#impacto" class="nav-link-main">Impacto</a>
+        <a href="#proyectos" class="nav-link-main">Historias</a>
+        <a href="#testimonios" class="nav-link-main">Testimonios</a>
+        <a href="#contacto" class="nav-link-main">Contacto</a>
       </div>
 
-      <a class="btn btn-small btn-primary header-cta" href="#contacto">Quiero potenciar mi negocio</a>
+      <button class="btn btn-small btn-primary header-cta" data-open-donation type="button">Donar ahora</button>
     </nav>
   </header>
 
@@ -57,18 +48,42 @@
             Ayudamos a pequenos negocios, comercios familiares y emprendedores a mostrar lo que hacen, vender mejor y gestionar por internet con herramientas simples y acompanamiento cercano.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contacto">Quiero potenciar mi negocio</a>
-            <a class="btn btn-secondary" href="#donaciones">Ayudar a una PyME</a>
+            <button class="btn btn-primary" data-open-donation type="button">Donar y generar impacto</button>
+            <a class="btn btn-secondary" href="#contacto">Necesito acompanamiento</a>
           </div>
         </div>
 
         <div class="hero-media reveal-right" aria-label="Emprendedores usando tecnologia en un pequeno negocio">
-          <img src="../Bodega Valmorè.png" alt="Bodega Valmorè - proyecto">
+          <img src="assets/proyecto-bodega-valmore.png" alt="Bodega Valmorè - proyecto">
           <div class="impact-card">
             <strong>Oportunidad digital real</strong>
             <span>Equipamiento, capacitacion y herramientas para vender mejor.</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ===== DONACIONES ===== -->
+    <section class="section donation-priority" id="donaciones">
+      <div class="container donation-grid">
+        <div class="reveal-left">
+          <p class="eyebrow">Tu aporte se convierte en herramientas</p>
+          <h2>Ayuda a una PyME a entrar al mundo digital</h2>
+          <p>
+            Con tu donacion financiamos equipamiento basico y capacitacion para que un pequeno negocio pueda vender,
+            gestionar y cobrar por internet.
+          </p>
+          <button class="btn btn-primary" id="openDonationModal" data-open-donation type="button">Calcular mi impacto y donar</button>
+        </div>
+
+        <article class="donation-info-card reveal-right">
+          <span class="donation-reference">$200.000</span>
+          <h3>Una PC base y 5 clases a medida</h3>
+          <p>
+            Es nuestra referencia para acompanar a un negocio con tecnologia, medios de pago y herramientas de gestion digital.
+          </p>
+          <button class="text-link donation-text-button" data-open-donation type="button">Ver cuanto impacto genera mi aporte</button>
+        </article>
       </div>
     </section>
 
@@ -125,8 +140,8 @@
             <span class="counter-label">Herramientas activadas</span>
           </div>
           <div class="counter-item">
-            <span class="counter-number" data-target="4">0</span>
-            <span class="counter-label">Recursos gratuitos</span>
+            <span class="counter-number" data-target="5">0</span>
+            <span class="counter-label">Clases por PyME</span>
           </div>
           <div class="counter-item">
             <span class="counter-number" data-target="1">0</span>
@@ -187,7 +202,7 @@
                   Impulso PyME nos ayudo a mostrar lo que haciamos, ordenar el stock y contactar clientes. La tecnologia dejo de ser algo lejano y se convirtio en una herramienta concreta para trabajar mejor.
                 </blockquote>
                 <div class="testimonial-author">
-                  <img class="testimonial-avatar" src="../a3.jpeg" alt="Valmorè">
+                  <img class="testimonial-avatar" src="assets/botella-valmore-testimonio.jpeg" alt="Valmorè">
                   <div class="testimonial-info">
                     <strong>Equipo Valmorè</strong>
                     <span>Curaduria de vinos - Buenos Aires</span>
@@ -203,7 +218,7 @@
                   Teniamos un producto con identidad, pero nos faltaba una forma clara de mostrarlo. Ahora tenemos presencia real en internet y mas herramientas para llegar a quienes pueden elegirnos.
                 </blockquote>
                 <div class="testimonial-author">
-                  <img class="testimonial-avatar" src="../a3.jpeg" alt="Valmorè vino">
+                  <img class="testimonial-avatar" src="assets/botella-valmore-testimonio.jpeg" alt="Valmorè vino">
                   <div class="testimonial-info">
                     <strong>Valmorè</strong>
                     <span>Malbec boutique - Argentina</span>
@@ -219,7 +234,7 @@
                   Lo mejor es que te acompanan sin vueltas. No te hablan dificil: te ayudan a entender, a practicar y a usar herramientas que realmente sirven para vender y gestionar mejor.
                 </blockquote>
                 <div class="testimonial-author">
-                  <img class="testimonial-avatar" src="../a3.jpeg" alt="Valmorè equipo">
+                  <img class="testimonial-avatar" src="assets/botella-valmore-testimonio.jpeg" alt="Valmorè equipo">
                   <div class="testimonial-info">
                     <strong>Equipo Valmorè</strong>
                     <span>Curaduria de vinos - Argentina</span>
@@ -238,27 +253,6 @@
             </div>
             <button class="carousel-btn" id="carouselNext" type="button" aria-label="Siguiente">&gt;</button>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== EMPRENDEDORES ===== -->
-    <section class="section section-blue" id="emprendedores">
-      <div class="container entrepreneurs-grid">
-        <div class="reveal-left">
-          <p class="eyebrow">Para emprendedores</p>
-          <h2>Para negocios que merecen la oportunidad de mostrarse</h2>
-          <p>
-            Trabajamos con pequenos comercios, emprendedores que venden por redes, negocios familiares y profesionales independientes que tienen talento, trabajo y productos para ofrecer, pero no siempre acceso a tecnologia o capacitacion.
-          </p>
-          <a class="btn btn-primary" href="#contacto">Sumate al programa</a>
-        </div>
-
-        <div class="benefits-grid reveal-right">
-          <div class="benefit">Mas visibilidad</div>
-          <div class="benefit">Mas autonomia</div>
-          <div class="benefit">Mas herramientas</div>
-          <div class="benefit">Mas oportunidades de venta</div>
         </div>
       </div>
     </section>
@@ -298,39 +292,6 @@
       </div>
     </section>
 
-    <!-- ===== RECURSOS ===== -->
-    <section class="section section-light" id="recursos">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Recursos gratuitos</p>
-          <h2>Recursos gratuitos para que nadie empiece desde cero</h2>
-        </div>
-
-        <div class="resource-grid stagger reveal">
-          <article class="card resource-card">
-            <h3>Plantilla de tablero semanal</h3>
-            <p>Ordena tareas, prioridades y avances aunque el negocio sea de una sola persona.</p>
-            <button class="btn btn-secondary download-btn" type="button">Descargar</button>
-          </article>
-          <article class="card resource-card">
-            <h3>Guia para ordenar Instagram</h3>
-            <p>Ayuda a mostrar productos, horarios, formas de pago y contacto de manera clara.</p>
-            <button class="btn btn-secondary download-btn" type="button">Descargar</button>
-          </article>
-          <article class="card resource-card">
-            <h3>Checklist de presencia digital</h3>
-            <p>Revisa si tu negocio se puede encontrar, contactar y elegir desde internet.</p>
-            <button class="btn btn-secondary download-btn" type="button">Descargar</button>
-          </article>
-          <article class="card resource-card">
-            <h3>Prompts de IA para emprendedores</h3>
-            <p>Ideas simples para responder clientes, crear publicaciones y ahorrar tiempo.</p>
-            <button class="btn btn-secondary download-btn" type="button">Descargar</button>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <!-- ===== SOBRE NOSOTROS ===== -->
     <section class="section" id="sobre-nosotros">
       <div class="container">
@@ -364,36 +325,19 @@
       </div>
     </section>
 
-    <!-- ===== COLABORAR ===== -->
-    <section class="section section-light" id="colaborar">
-      <div class="container">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Colaborar</p>
-          <h2>Hay muchas formas de empujar este cambio</h2>
-          <p>Podes sumarte con tiempo, conocimiento, equipamiento o alianzas para que mas negocios puedan acceder a herramientas digitales.</p>
-        </div>
-
-        <div class="collab-list reveal">
-          <span>Ser voluntario</span>
-          <span>Aportar conocimiento</span>
-          <span>Aliarse como empresa</span>
-          <span>Donar tecnologia</span>
-        </div>
-      </div>
-    </section>
-
     <!-- ===== CONTACTO ===== -->
     <section class="section" id="contacto">
       <div class="container two-column">
         <div class="reveal-left">
           <p class="eyebrow">Contacto</p>
           <h2>Contanos que necesita tu negocio</h2>
-          <p>Si tenes un negocio y la tecnologia hoy te resulta lejana, escribinos. Tambien respondemos consultas de voluntarios y organizaciones que quieran colaborar.</p>
+          <p>Si tenes un negocio y la tecnologia hoy te resulta lejana, escribinos. Te ayudamos a identificar un primer paso concreto.</p>
 
           <div class="contact-data">
-            <p><strong>Email:</strong> contacto@impulsopyme.org</p>
-            <p><strong>Instagram:</strong> @impulsopyme</p>
-            <p><strong>WhatsApp:</strong> +54 9 11 0000-0000</p>
+            <p><strong>Responsable:</strong> Emanuel Buczek</p>
+            <p><strong>Email:</strong> <a href="mailto:buczek360@gmail.com">buczek360@gmail.com</a></p>
+            <p><strong>Instagram:</strong> <a href="https://www.instagram.com/valmore_wines" target="_blank" rel="noopener">@valmore_wines</a></p>
+            <p><strong>WhatsApp:</strong> <a href="https://wa.me/5491144067281" target="_blank" rel="noopener">+54 9 11 4406-7281</a></p>
           </div>
         </div>
 
@@ -417,33 +361,9 @@
       </div>
     </section>
 
-    <!-- ===== DONACIONES ===== -->
-    <section class="section section-light" id="donaciones">
-      <div class="container donation-grid">
-        <div class="reveal-left">
-          <p class="eyebrow">Donaciones</p>
-          <h2>Ayuda a una PyME sin acceso a la tecnologia</h2>
-          <p>
-            Tu aporte permite comprar equipamiento basico y acompanar a pequenos negocios para que aprendan a vender,
-            gestionar y cobrar por internet. Una donacion puede convertir una barrera en una oportunidad.
-          </p>
-          <button class="btn btn-primary" id="openDonationModal" type="button">Donar</button>
-        </div>
-
-        <article class="donation-info-card reveal-right">
-          <h3>Base del calculo</h3>
-          <p>
-            Tomamos como referencia que <strong>$200.000</strong> permiten cubrir una PC base para un local y
-            <strong>5 clases de capacitacion a medida</strong> para poner en marcha su negocio digital.
-          </p>
-          <p>
-            Con ese acompanamiento, la PyME puede ordenar su gestion, sumar medios de pago y hacer llegar sus productos
-            a mas personas.
-          </p>
-        </article>
-      </div>
-    </section>
   </main>
+
+  <button class="mobile-donation-cta" data-open-donation type="button">Donar ahora</button>
 
   <div class="modal-backdrop" id="donationModal" aria-hidden="true">
     <div class="donation-modal" role="dialog" aria-modal="true" aria-labelledby="donationModalTitle">
@@ -455,6 +375,9 @@
       <label for="donationAmount">Monto de donacion en pesos</label>
       <input id="donationAmount" type="number" min="0" step="1000" value="200000">
 
+      <label for="donorName">Nombre de quien dona</label>
+      <input id="donorName" type="text" placeholder="Nombre y apellido">
+
       <div class="donation-result" id="donationResult">
         Con $200.000 ayudas aproximadamente a 1 PyME a mejorar su negocio.
       </div>
@@ -463,6 +386,40 @@
         <strong>Que se financia?</strong>
         <span>Una PC base, 5 clases de capacitacion a medida, medios de pago digitales y herramientas para vender y gestionar por internet.</span>
       </div>
+
+      <div class="donation-alias">
+        <span>Alias para transferir</span>
+        <strong id="donationAlias">Emanuel.Buczek</strong>
+      </div>
+
+      <button class="btn btn-primary donation-confirm-btn" id="confirmDonation" type="button">Donar por transferencia</button>
+      <p class="form-note">El comprobante generado registra el aporte declarado. La transferencia debe verificarse por separado.</p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="receiptModal" aria-hidden="true">
+    <div class="donation-modal receipt-modal" role="dialog" aria-modal="true" aria-labelledby="receiptTitle">
+      <button class="modal-close" id="closeReceiptModal" type="button" aria-label="Cerrar">x</button>
+
+      <div class="donation-receipt" id="donationReceipt">
+        <p class="eyebrow">Impulso PyME</p>
+        <h2 id="receiptTitle">Comprobante de aporte declarado</h2>
+        <p class="receipt-status">Pendiente de verificacion de transferencia</p>
+
+        <dl class="receipt-data">
+          <div><dt>Donante</dt><dd id="receiptDonor">-</dd></div>
+          <div><dt>Fecha</dt><dd id="receiptDate">-</dd></div>
+          <div><dt>Monto declarado</dt><dd id="receiptAmount">-</dd></div>
+          <div><dt>Impacto estimado</dt><dd id="receiptImpact">-</dd></div>
+          <div><dt>Alias de destino</dt><dd>Emanuel.Buczek</dd></div>
+        </dl>
+
+        <p class="receipt-note">
+          Este documento no acredita la recepcion del dinero. Registra la intencion de aporte informada desde la web.
+        </p>
+      </div>
+
+      <button class="btn btn-primary" id="saveReceiptPdf" type="button">Guardar comprobante en PDF</button>
     </div>
   </div>
 
@@ -477,21 +434,22 @@
         <h3>Links rapidos</h3>
         <a href="#como-ayudamos">Como ayudamos</a>
         <a href="#proyectos">Proyectos</a>
-        <a href="#recursos">Recursos</a>
+        <a href="#testimonios">Testimonios</a>
         <a href="#contacto">Contacto</a>
         <a href="#donaciones">Donaciones</a>
       </div>
 
       <div>
         <h3>Redes sociales</h3>
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.instagram.com/valmore_wines" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.linkedin.com/in/emanuel-buczek-scrum-master" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="../index.html">Accesos principales</a>
       </div>
     </div>
     <p class="copyright">&copy; 2026 Impulso PyME. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="script.js?v=2.0"></script>
+  <script src="script.js?v=4.0"></script>
 </body>
 </html>
 

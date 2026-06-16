@@ -3,383 +3,557 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Links principales | Emanuel Buczek</title>
+  <meta name="description" content="Portfolio de Emanuel Buczek: Impulso PyME e Identikit, proyectos de tecnologia, impacto social y diseno web.">
+  <title>Proyectos | Emanuel Buczek</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --ink: #0d1834;
+      --muted: #63708a;
+      --line: rgba(255, 255, 255, 0.24);
+      --white: #ffffff;
+      --blue: #315dff;
+      --violet: #7657ff;
+      --cyan: #43d9c8;
+      --surface: rgba(255, 255, 255, 0.94);
+      --radius: 8px;
+    }
+
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       min-height: 100vh;
       margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: auto;
-      padding: 24px;
-      color: #111a37;
+      overflow-x: hidden;
+      color: var(--white);
       background:
-        radial-gradient(circle at 15% 15%, rgba(96, 239, 255, 0.42), transparent 28%),
-        radial-gradient(circle at 86% 18%, rgba(160, 113, 255, 0.42), transparent 30%),
-        radial-gradient(circle at 50% 96%, rgba(255, 215, 111, 0.2), transparent 24%),
-        linear-gradient(135deg, #071638 0%, #1d48d8 48%, #7257ff 100%);
-      font-family: "Poppins", Arial, Helvetica, sans-serif;
+        radial-gradient(circle at 12% 14%, rgba(67, 217, 200, 0.3), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(160, 113, 255, 0.36), transparent 30%),
+        linear-gradient(135deg, #071638 0%, #173eaf 50%, #684be4 100%);
+      font-family: "Poppins", Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(96, 239, 255, 0.72);
+      outline-offset: 4px;
     }
 
     #particulas {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
+      z-index: 0;
       width: 100%;
       height: 100%;
-      z-index: 0;
       pointer-events: none;
     }
 
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      border-radius: 999px;
-      pointer-events: none;
-    }
-
-    body::before {
-      width: 340px;
-      height: 340px;
-      left: -110px;
-      bottom: -120px;
-      background: rgba(67, 217, 200, 0.22);
-      filter: blur(8px);
-    }
-
-    body::after {
-      width: 260px;
-      height: 260px;
-      right: -70px;
-      top: 90px;
-      background: rgba(255, 255, 255, 0.14);
-      filter: blur(4px);
-    }
-
-    .contenedor {
+    .page-shell {
       position: relative;
       z-index: 1;
-      width: min(500px, 100%);
-      padding: 44px 34px 34px;
-      border: 1px solid rgba(255, 255, 255, 0.72);
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: 0 34px 90px rgba(3, 14, 45, 0.36);
-      text-align: center;
-      backdrop-filter: blur(18px);
+      width: min(680px, calc(100% - 32px));
+      margin: 0 auto;
     }
 
-    .marca {
-      width: 72px;
-      height: 72px;
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .identity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .monogram {
       display: grid;
+      width: 42px;
+      height: 42px;
       place-items: center;
-      margin: 0 auto 20px;
-      border-radius: 22px;
-      color: #ffffff;
-      background: linear-gradient(135deg, #315dff, #7357ff);
-      box-shadow: 0 18px 34px rgba(49, 93, 255, 0.32);
-      font-size: 30px;
-      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 16px;
+      backdrop-filter: blur(12px);
     }
 
-    .etiqueta {
-      margin: 0 0 10px;
-      color: #315dff;
+    .identity span:last-child {
+      font-size: 15px;
+    }
+
+    .availability {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: rgba(255, 255, 255, 0.82);
       font-size: 13px;
+      font-weight: 500;
+    }
+
+    .availability::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 0 5px rgba(67, 217, 200, 0.15);
+    }
+
+    main {
+      padding: clamp(38px, 6vw, 64px) 0 52px;
+    }
+
+    .intro {
+      margin-bottom: 38px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #a9fff5;
+      font-size: 12px;
       font-weight: 800;
-      letter-spacing: 1.4px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     h1 {
-      margin: 0 0 12px;
-      color: #101936;
-      font-size: clamp(34px, 7vw, 48px);
-      line-height: 1.05;
+      max-width: 650px;
+      margin: 0 auto 18px;
+      font-size: clamp(2.5rem, 7vw, 4.4rem);
+      line-height: 1.02;
       letter-spacing: 0;
     }
 
-    .descripcion {
-      max-width: 340px;
-      margin: 0 auto 30px;
-      color: #626d86;
-      font-size: 17px;
-      line-height: 1.55;
+    .intro-copy {
+      max-width: 560px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      line-height: 1.7;
     }
 
-    .botones {
+    .intro-copy strong {
+      color: var(--white);
+    }
+
+    .projects-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .projects-heading h2 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .projects-heading span {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .projects-grid {
       display: flex;
       flex-direction: column;
       gap: 14px;
     }
 
-    .boton {
-      width: 100%;
-      min-height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 0 20px 0 22px;
-      border-radius: 16px;
-      color: #ffffff;
-      background: linear-gradient(135deg, #315dff, #5a50ff);
-      box-shadow: 0 16px 30px rgba(49, 93, 255, 0.26);
-      font-size: 17px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-    }
-
-    .boton::after {
-      content: ">";
-      width: 34px;
-      height: 34px;
+    .project-card {
+      position: relative;
       display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.18);
-      font-size: 19px;
-      font-weight: 800;
-      flex: 0 0 auto;
+      grid-template-columns: 104px minmax(0, 1fr);
+      align-items: center;
+      min-height: 120px;
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.64);
+      border-radius: var(--radius);
+      color: var(--ink);
+      background: var(--surface);
+      box-shadow: 0 28px 70px rgba(3, 14, 45, 0.25);
+      transition: transform 220ms ease, box-shadow 220ms ease;
     }
 
-    .boton:hover {
+    .project-card:hover {
+      transform: translateY(-3px) scale(1.006);
+      box-shadow: 0 36px 90px rgba(3, 14, 45, 0.34);
+    }
+
+    .project-image {
+      position: relative;
+      width: 84px;
+      height: 84px;
+      margin-left: 14px;
+      overflow: hidden;
+      border-radius: 7px;
+      background: #dfe7f8;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.045);
+    }
+
+    .project-number {
+      display: none;
+    }
+
+    .project-body {
+      min-width: 0;
+      padding: 20px 16px 20px 20px;
+    }
+
+    .project-title {
+      margin: 0 0 6px;
+      font-size: 1.25rem;
+      line-height: 1.12;
+    }
+
+    .project-description {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .repository-link {
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr);
+      align-items: center;
+      min-height: 96px;
+      margin-top: 14px;
+      padding: 10px 16px 10px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.64);
+      border-radius: var(--radius);
+      color: var(--ink);
+      background: var(--surface);
+      box-shadow: 0 20px 50px rgba(3, 14, 45, 0.2);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .repository-link:hover {
       transform: translateY(-3px);
-      box-shadow: 0 22px 40px rgba(49, 93, 255, 0.35);
-      background: linear-gradient(135deg, #244be0, #6a54ff);
+      box-shadow: 0 28px 65px rgba(3, 14, 45, 0.3);
     }
 
-    .boton.secundario {
-      color: #101936;
-      background: #f0f4ff;
-      box-shadow: none;
-      border: 1px solid #dde6ff;
+    .repository-icon {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      justify-self: center;
     }
 
-    .boton.secundario::after {
-      color: #315dff;
-      background: #ffffff;
+    .repository-copy strong,
+    .repository-copy span {
+      display: block;
     }
 
-    .boton.secundario:hover {
-      background: #e7edff;
-      box-shadow: 0 18px 34px rgba(16, 25, 54, 0.12);
+    .repository-copy strong {
+      margin-bottom: 4px;
+      font-size: 1.05rem;
     }
 
-    .pie {
-      margin: 26px 0 0;
-      color: #7b8499;
-      font-size: 13px;
-      font-weight: 600;
+    .repository-copy span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
     }
 
-    @media (max-width: 480px) {
-      body {
-        padding: 18px;
+    .page-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 24px 0 34px;
+      border-top: 1px solid var(--line);
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 12px;
+    }
+
+    @media (max-width: 620px) {
+      .page-shell {
+        width: min(100% - 24px, 1180px);
       }
 
-      .contenedor {
-        padding: 34px 20px 24px;
-        border-radius: 22px;
+      .topbar {
+        min-height: 70px;
       }
 
-      .marca {
-        width: 62px;
-        height: 62px;
-        border-radius: 18px;
-        font-size: 26px;
+      .availability {
+        font-size: 0;
       }
 
-      .boton {
-        min-height: 58px;
-        padding-left: 18px;
-        font-size: 15px;
+      main {
+        padding: 38px 0 44px;
+      }
+
+      .intro {
+        margin-bottom: 34px;
+      }
+
+      h1 {
+        font-size: clamp(2.45rem, 12vw, 3.25rem);
+      }
+
+      .project-card {
+        grid-template-columns: 82px minmax(0, 1fr);
+        min-height: 112px;
+      }
+
+      .project-image {
+        width: 74px;
+        height: 88px;
+        margin-left: 10px;
+      }
+
+      .project-body {
+        padding: 16px 8px 16px 12px;
+      }
+
+      .project-title {
+        font-size: 1.08rem;
+      }
+
+      .project-description {
+        margin-bottom: 0;
+        font-size: 11.5px;
+      }
+
+      .repository-link {
+        grid-template-columns: 64px minmax(0, 1fr);
+        min-height: 88px;
+      }
+
+      .repository-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .page-footer {
+        flex-direction: column;
+        gap: 6px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      #particulas {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
-  <canvas id="particulas"></canvas>
+  <canvas id="particulas" aria-hidden="true"></canvas>
 
-  <main class="contenedor">
-    <div class="marca">EB</div>
-    <p class="etiqueta">Accesos principales</p>
-    <h1>Mis proyectos</h1>
-    <p class="descripcion">Elegí una experiencia para conocer mi trabajo y mis proyectos web.</p>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="identity">
+        <span class="monogram">EB</span>
+        <span>Emanuel Buczek</span>
+      </div>
+      <div class="availability">Portfolio de proyectos</div>
+    </header>
 
-    <div class="botones">
-      <a class="boton" href="ong/index.html">Web de mi ONG</a>
-      <a class="boton secundario" href="identikit.html">Página original de Identikit</a>
-    </div>
+    <main>
+      <section class="intro" aria-labelledby="pageTitle">
+        <p class="eyebrow">Tecnologia, gestion e impacto social</p>
+        <h1 id="pageTitle">Mis proyectos</h1>
+        <p class="intro-copy">
+          Elegi una experiencia para conocer mi trabajo, mi recorrido y los proyectos digitales que estoy construyendo.
+        </p>
+      </section>
 
-    <p class="pie">Emanuel Buczek | Diseño web y proyectos digitales</p>
-  </main>
+      <div class="projects-heading">
+        <h2>Elegir proyecto</h2>
+        <span aria-hidden="true"></span>
+      </div>
+
+      <section class="projects-grid" aria-label="Proyectos principales">
+        <a class="project-card" href="ong/index.html" aria-label="Abrir proyecto Impulso PyME">
+          <div class="project-image">
+            <span class="project-number">PROYECTO 01</span>
+            <img src="ong/assets/proyecto-bodega-valmore.png" alt="Proyecto de digitalizacion para un pequeno negocio">
+          </div>
+          <div class="project-body">
+            <h2 class="project-title">Impulso PyME</h2>
+            <p class="project-description">
+              Una plataforma para acercar tecnologia, capacitacion y oportunidades digitales a pequenos negocios.
+            </p>
+          </div>
+        </a>
+
+        <a class="project-card" href="identikit/index.html" aria-label="Abrir proyecto Identikit">
+          <div class="project-image">
+            <span class="project-number">PROYECTO 02</span>
+            <img src="identikit/emanuel-en-vinedo.jpg" alt="Emanuel Buczek en un vinedo">
+          </div>
+          <div class="project-body">
+            <h2 class="project-title">Identikit personal</h2>
+            <p class="project-description">
+              Un recorrido por mi historia, mis intereses y Valmore, con contenido interactivo, trivia y musica.
+            </p>
+          </div>
+        </a>
+      </section>
+
+      <a class="repository-link" href="https://github.com/EbuczekUADE/WEBEmanuelBuczek" target="_blank" rel="noopener" aria-label="Abrir repositorio del proyecto en GitHub">
+        <img class="repository-icon" src="https://github.githubassets.com/favicons/favicon.svg" alt="">
+        <span class="repository-copy">
+          <strong>Repositorio en GitHub</strong>
+          <span>Encontra el codigo completo y los archivos utilizados para construir estos proyectos.</span>
+        </span>
+      </a>
+    </main>
+
+    <footer class="page-footer">
+      <span>Emanuel Buczek | Diseno web y proyectos digitales</span>
+      <span>Buenos Aires, Argentina | 2026</span>
+    </footer>
+  </div>
 
   <script>
     (function () {
       const canvas = document.getElementById("particulas");
-      const ctx = canvas.getContext("2d");
-
-      let width, height;
-      let mouse = { x: -9999, y: -9999 };
-
-      const COLORS = [
-        "rgba(96, 239, 255,",   // cyan
-        "rgba(114, 87, 255,",   // violeta
-        "rgba(49, 93, 255,",    // azul
-        "rgba(160, 113, 255,",  // lila
-        "rgba(67, 217, 200,",   // turquesa
-      ];
-
-      const PARTICLE_COUNT = 120;
-      const MOUSE_RADIUS = 160;
+      const context = canvas.getContext("2d");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const colors = ["67,217,200", "114,87,255", "49,93,255", "160,113,255"];
+      const mouse = { x: -9999, y: -9999 };
+      let width = 0;
+      let height = 0;
       let particles = [];
 
+      if (reducedMotion) return;
+
       function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = Math.round(width * ratio);
+        canvas.height = Math.round(height * ratio);
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        context.setTransform(ratio, 0, 0, ratio, 0, 0);
       }
 
       class Particle {
         constructor() {
-          this.reset();
-        }
-
-        reset() {
           this.x = Math.random() * width;
           this.y = Math.random() * height;
-          this.baseX = this.x;
-          this.baseY = this.y;
-          this.size = Math.random() * 3.5 + 1.5;
-          this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-          this.opacity = Math.random() * 0.6 + 0.3;
-          this.vx = (Math.random() - 0.5) * 0.4;
-          this.vy = (Math.random() - 0.5) * 0.4;
-          this.drift = Math.random() * Math.PI * 2;
-          this.driftSpeed = Math.random() * 0.008 + 0.003;
-          this.driftRadius = Math.random() * 30 + 10;
-        }
-
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fillStyle = this.color + this.opacity + ")";
-          ctx.fill();
+          this.radius = Math.random() * 2 + 1;
+          this.vx = (Math.random() - 0.5) * 0.25;
+          this.vy = (Math.random() - 0.5) * 0.25;
+          this.color = colors[Math.floor(Math.random() * colors.length)];
         }
 
         update() {
-          // Movimiento flotante natural
-          this.drift += this.driftSpeed;
-          let targetX = this.baseX + Math.cos(this.drift) * this.driftRadius;
-          let targetY = this.baseY + Math.sin(this.drift) * this.driftRadius;
+          this.x += this.vx;
+          this.y += this.vy;
 
-          // Reacción al mouse
-          let dx = mouse.x - this.x;
-          let dy = mouse.y - this.y;
-          let dist = Math.sqrt(dx * dx + dy * dy);
+          if (this.x < 0 || this.x > width) this.vx *= -1;
+          if (this.y < 0 || this.y > height) this.vy *= -1;
 
-          if (dist < MOUSE_RADIUS) {
-            let force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
-            let angle = Math.atan2(dy, dx);
-            // Las partículas se dispersan del mouse
-            targetX -= Math.cos(angle) * force * 80;
-            targetY -= Math.sin(angle) * force * 80;
-            // Aumentar opacidad cerca del mouse
-            this.opacity = Math.min(0.95, this.opacity + 0.02);
-          } else {
-            this.opacity += (0.3 + Math.random() * 0.3 - this.opacity) * 0.01;
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
+          const distance = Math.hypot(dx, dy);
+          if (distance < 120 && distance > 0) {
+            this.x += (dx / distance) * 0.8;
+            this.y += (dy / distance) * 0.8;
           }
 
-          this.x += (targetX - this.x) * 0.04;
-          this.y += (targetY - this.y) * 0.04;
-
-          // Mover la base lentamente
-          this.baseX += this.vx;
-          this.baseY += this.vy;
-
-          // Rebotar en los bordes
-          if (this.baseX < 0 || this.baseX > width) this.vx *= -1;
-          if (this.baseY < 0 || this.baseY > height) this.vy *= -1;
-
-          this.draw();
+          context.beginPath();
+          context.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          context.fillStyle = "rgba(" + this.color + ",0.48)";
+          context.fill();
         }
       }
 
-      function init() {
+      function initialize() {
         resize();
-        particles = [];
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
-          particles.push(new Particle());
-        }
+        const count = Math.min(85, Math.floor((width * height) / 12000));
+        particles = Array.from({ length: count }, () => new Particle());
       }
 
-      function drawLines() {
-        for (let i = 0; i < particles.length; i++) {
-          for (let j = i + 1; j < particles.length; j++) {
-            let dx = particles[i].x - particles[j].x;
-            let dy = particles[i].y - particles[j].y;
-            let dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 100) {
-              ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = "rgba(114, 87, 255," + (1 - dist / 100) * 0.12 + ")";
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
+      function drawConnections() {
+        for (let index = 0; index < particles.length; index += 1) {
+          for (let next = index + 1; next < particles.length; next += 1) {
+            const distance = Math.hypot(
+              particles[index].x - particles[next].x,
+              particles[index].y - particles[next].y
+            );
+
+            if (distance < 92) {
+              context.beginPath();
+              context.moveTo(particles[index].x, particles[index].y);
+              context.lineTo(particles[next].x, particles[next].y);
+              context.strokeStyle = "rgba(255,255,255," + (1 - distance / 92) * 0.1 + ")";
+              context.lineWidth = 0.6;
+              context.stroke();
             }
           }
         }
       }
 
       function animate() {
-        ctx.clearRect(0, 0, width, height);
-        particles.forEach(p => p.update());
-        drawLines();
-        requestAnimationFrame(animate);
+        context.clearRect(0, 0, width, height);
+        particles.forEach((particle) => particle.update());
+        drawConnections();
+        window.requestAnimationFrame(animate);
       }
 
-      // Eventos
-      window.addEventListener("resize", () => {
-        resize();
-        particles.forEach(p => {
-          p.baseX = Math.random() * width;
-          p.baseY = Math.random() * height;
-        });
+      window.addEventListener("resize", initialize);
+      window.addEventListener("mousemove", (event) => {
+        mouse.x = event.clientX;
+        mouse.y = event.clientY;
       });
-
-      window.addEventListener("mousemove", (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-      });
-
       window.addEventListener("mouseleave", () => {
         mouse.x = -9999;
         mouse.y = -9999;
       });
 
-      // Touch support
-      window.addEventListener("touchmove", (e) => {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-      });
-
-      window.addEventListener("touchend", () => {
-        mouse.x = -9999;
-        mouse.y = -9999;
-      });
-
-      init();
+      initialize();
       animate();
     })();
   </script>

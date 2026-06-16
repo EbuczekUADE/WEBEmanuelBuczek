@@ -10,11 +10,21 @@ const forms = document.querySelectorAll("form");
 const contactForm = document.querySelector("#contactForm");
 const contactStatus = document.querySelector("#contactStatus");
 const downloadButtons = document.querySelectorAll(".download-btn");
-const openDonationModal = document.querySelector("#openDonationModal");
+const openDonationButtons = document.querySelectorAll("[data-open-donation]");
 const closeDonationModal = document.querySelector("#closeDonationModal");
 const donationModal = document.querySelector("#donationModal");
 const donationAmount = document.querySelector("#donationAmount");
 const donationResult = document.querySelector("#donationResult");
+const donorName = document.querySelector("#donorName");
+const confirmDonation = document.querySelector("#confirmDonation");
+const receiptModal = document.querySelector("#receiptModal");
+const closeReceiptModal = document.querySelector("#closeReceiptModal");
+const saveReceiptPdf = document.querySelector("#saveReceiptPdf");
+const receiptDonor = document.querySelector("#receiptDonor");
+const receiptDate = document.querySelector("#receiptDate");
+const receiptAmount = document.querySelector("#receiptAmount");
+const receiptImpact = document.querySelector("#receiptImpact");
+let lastDonationTrigger = null;
 
 function showToast(message) {
   const toast = document.createElement("div");
@@ -38,11 +48,13 @@ function showToast(message) {
 menuToggle.addEventListener("click", () => {
   const isOpen = navLinks.classList.toggle("is-open");
   menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? "Cerrar menu" : "Abrir menu");
   // Cerrar dropdown cuando se cierra el menú
-  navDropdown.classList.remove("is-open");
-  navDropdownToggle.setAttribute("aria-expanded", "false");
+  navDropdown?.classList.remove("is-open");
+  navDropdownToggle?.setAttribute("aria-expanded", "false");
 });
 
+if (navDropdown && navDropdownToggle && navDropdownMenu) {
 // Dropdown behavior with small delay to avoid accidental closes
 let closeDropdownTimeout = null;
 function openDropdown() {
@@ -132,13 +144,24 @@ navDropdownMenu.querySelectorAll("a").forEach((link) => {
     navDropdownToggle.setAttribute("aria-expanded", "false");
   });
 });
+}
 
 // Cerrar dropdown al hacer click en otros links del menú
 navLinks.querySelectorAll(".nav-link-main").forEach((link) => {
   link.addEventListener("click", () => {
     navLinks.classList.remove("is-open");
     menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Abrir menu");
   });
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && navLinks?.classList.contains("is-open")) {
+    navLinks.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Abrir menu");
+    menuToggle.focus();
+  }
 });
 
 
@@ -230,15 +253,38 @@ function setDonationModal(open) {
 
   donationModal.classList.toggle("is-open", open);
   donationModal.setAttribute("aria-hidden", String(!open));
+  document.body.classList.toggle("modal-open", open);
 
   if (open) {
     updateDonationResult();
     donationAmount.focus();
+  } else if (!receiptModal?.classList.contains("is-open")) {
+    lastDonationTrigger?.focus();
   }
 }
 
-if (openDonationModal && closeDonationModal && donationModal) {
-  openDonationModal.addEventListener("click", () => setDonationModal(true));
+function setReceiptModal(open) {
+  if (!receiptModal) return;
+
+  receiptModal.classList.toggle("is-open", open);
+  receiptModal.setAttribute("aria-hidden", String(!open));
+
+  if (open) {
+    document.body.classList.add("modal-open");
+    closeReceiptModal?.focus();
+  } else {
+    document.body.classList.remove("modal-open");
+    lastDonationTrigger?.focus();
+  }
+}
+
+if (openDonationButtons.length && closeDonationModal && donationModal) {
+  openDonationButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      lastDonationTrigger = button;
+      setDonationModal(true);
+    });
+  });
   closeDonationModal.addEventListener("click", () => setDonationModal(false));
 
   donationModal.addEventListener("click", (event) => {
@@ -251,11 +297,88 @@ if (openDonationModal && closeDonationModal && donationModal) {
     if (event.key === "Escape" && donationModal.classList.contains("is-open")) {
       setDonationModal(false);
     }
+
+    if (event.key === "Escape" && receiptModal?.classList.contains("is-open")) {
+      setReceiptModal(false);
+    }
   });
 }
 
 if (donationAmount) {
-  donationAmount.addEventListener("input", updateDonationResult);
+  donationAmount.addEventListener("input", () => {
+    donationAmount.setCustomValidity("");
+    updateDonationResult();
+  });
+}
+
+if (donorName) {
+  donorName.addEventListener("input", () => {
+    donorName.setCustomValidity("");
+  });
+}
+
+if (confirmDonation) {
+  confirmDonation.addEventListener("click", async () => {
+    const amount = Number(donationAmount.value) || 0;
+    const name = donorName.value.trim();
+
+    if (!name) {
+      donorName.focus();
+      donorName.setCustomValidity("Ingresa el nombre de quien realiza la donacion.");
+      donorName.reportValidity();
+      return;
+    }
+
+    donorName.setCustomValidity("");
+
+    if (amount <= 0) {
+      donationAmount.focus();
+      donationAmount.setCustomValidity("Ingresa un monto mayor a cero.");
+      donationAmount.reportValidity();
+      return;
+    }
+
+    donationAmount.setCustomValidity("");
+
+    const helpedBusinesses = amount / donationBaseAmount;
+    const impactText = helpedBusinesses.toLocaleString("es-AR", {
+      maximumFractionDigits: 2,
+    });
+
+    receiptDonor.textContent = name;
+    receiptDate.textContent = new Intl.DateTimeFormat("es-AR", {
+      dateStyle: "long",
+      timeStyle: "short",
+    }).format(new Date());
+    receiptAmount.textContent = formatCurrency(amount);
+    receiptImpact.textContent = `${impactText} PyME${helpedBusinesses === 1 ? "" : "s"}`;
+
+    try {
+      await navigator.clipboard.writeText("Emanuel.Buczek");
+      showToast("Alias Emanuel.Buczek copiado.");
+    } catch (error) {
+      showToast("Transferi al alias Emanuel.Buczek.");
+    }
+
+    setDonationModal(false);
+    setReceiptModal(true);
+  });
+}
+
+if (closeReceiptModal && receiptModal) {
+  closeReceiptModal.addEventListener("click", () => setReceiptModal(false));
+
+  receiptModal.addEventListener("click", (event) => {
+    if (event.target === receiptModal) {
+      setReceiptModal(false);
+    }
+  });
+}
+
+if (saveReceiptPdf) {
+  saveReceiptPdf.addEventListener("click", () => {
+    window.print();
+  });
 }
 
 // ========================================
